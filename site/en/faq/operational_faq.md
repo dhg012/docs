@@ -1,7 +1,5 @@
 ---
 id: operational_faq.md
-title: Operational FAQ
-sidebar_label: Operational FAQ
 ---
 
 # Operational FAQ
@@ -55,7 +53,7 @@ It is recommended that you use the docker images with the Milvus compilation env
 
 #### Is there a limitation for the number of collections and partitions in Milvus?
 
-Yes. If you use SQLite as the metadata management service, the sum of collection number and partition number must not exceed 50000. To create more collections and partitions, please [use MySQL](../reference/data_manage.md).
+Yes. If you use SQLite as the metadata management service, the sum of collection number and partition number must not exceed 50000. To create more collections and partitions, please [use MySQL](data_manage.md).
 
 #### Why does Milvus return config check error?
 
@@ -63,7 +61,7 @@ The version of your Milvus server configuration file is incorrect. Milvus 0.7.0 
 
 #### Does Milvus support insert, delete, update, and query operations for vectors?
 
-Yes. You can refer to [Milvus Operations](../guides/milvus_operation.md) for details.
+Yes. You can refer to [Milvus Operations](milvus_operation.md) for details.
 
 > Note: Before 0.7.0, only insertion and search are supported.
 
@@ -88,13 +86,13 @@ Even if the data is a 2-dim array, this error can still occur if the data type i
 
 #### Why sometimes it takes much longer for queries with smaller datasets?
 
-If the size of a data file is smaller than the value of the `index_file_size` parameter when creating a collection, Milvus will not build indexes for the data file. Thus, it is possible that smaller datasets may need more time for queries. Refer to [Milvus Operation](../guides/milvus_operation.md) for more information.
+If the size of a data file is smaller than the value of the `index_file_size` parameter when creating a collection, Milvus will not build indexes for the data file. Thus, it is possible that smaller datasets may need more time for queries. Refer to [Milvus Operation](milvus_operation.md) for more information.
 
-> Note: `index_file_size` was named as `index_building_threshold` before the 0.4.0 release.
+> Note: `index_file_size` was named `index_building_threshold` before the 0.4.0 release.
 
 #### Why is my Milvus constantly having low accuracy?
 
-Check the value of the `nprobe` parameter in the functions when you use an SDK to search vectors in a collection. The greater the value, the more precise the result, yet the slower the search speed. Refer to [Learn Milvus Operation](../guides/milvus_operation.md) for more information.
+Check the value of the `nprobe` parameter in the functions when you use an SDK to search vectors in a collection. The greater the value, the more precise the result, yet the slower the search speed. Refer to [Learn Milvus Operation](milvus_operation.md) for more information.
 
 #### Why are my new configurations not working?
 
@@ -118,7 +116,7 @@ $ docker logs <container ID>
 
 #### Why there are vectors with `-1` as IDs in my search result?
 
-When the number of vectors in the dataset is less than `topk`, Milvus automatically adds vectors with `-1` as IDs to the search result to ensure that the search result contains `topk` elements.
+When the number of vectors in the dataset is less than `top_k`, Milvus automatically adds vectors with `-1` as IDs to the search result to ensure that the search result contains `top_k` elements.
 
 #### Why does my Milvus return "Illegal instruction" during startup? 
 
@@ -136,8 +134,8 @@ The log files in the docker container use UTC timezone by default. If the timezo
 
 In order to successfully run multiprocessing in Milvus, make sure the following conditions are met:
 
-- No client is created in the main process
-- Clients are created in each child process
+- No client is created in the main process.
+- Clients are created in each child process.
 
 #### Why are the search results fewer than K when I try to search the top K vectors?
 
@@ -149,7 +147,7 @@ In order to avoid this situation, you can try increasing the value of `nprobe`, 
 
 #### How to build Milvus from source in the Docker container?
 
-As Milvus is mainly developed under the Ubuntu environment, the recommended compilation environment is Ubuntu 18.04 or higher. If your developing environment is not Ubuntu 18.04, you can also build Milvus from source code in the docker container. We provide two docker images that provide the build environment needed for the Milvus CPU-only and GPU supported versions.
+As Milvus is mainly developed under the Ubuntu environment, the recommended compilation environment is Ubuntu 18.04 or higher. If your developing environment is not Ubuntu 18.04, you can also build Milvus from source code in the Docker container. We provide two docker images that provide the build environment needed for the Milvus CPU-only and GPU-supported versions.
 
 To build Milvus from source in the Docker container, please refer to [Compile Milvus on Docker](https://github.com/milvus-io/milvus/blob/0.6.0/install.md#compile-milvus-on-docker).
 
